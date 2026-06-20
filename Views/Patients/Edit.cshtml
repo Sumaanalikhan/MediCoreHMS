@@ -1,0 +1,52 @@
+﻿@model MediCoreHMS.Models.Patient
+@{
+    ViewData["Title"] = "Edit Patient";
+}
+
+<h4 class="fw-bold mb-3">✏️ Edit Patient</h4>
+<div class="card shadow rounded-4 p-4" style="max-width:600px">
+    <form method="post" action="/Patients/Edit/@Model.PatientId">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="PatientId" value="@Model.PatientId" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="mb-3">
+            <label asp-for="FullName" class="form-label"></label>
+            <input asp-for="FullName" class="form-control" />
+        </div>
+        <div class="row">
+            <div class="col mb-3">
+                <label asp-for="Age" class="form-label"></label>
+                <input asp-for="Age" class="form-control" type="number" />
+            </div>
+            <div class="col mb-3">
+                <label asp-for="Gender" class="form-label"></label>
+                <select asp-for="Gender" class="form-select">
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                </select>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label asp-for="PhoneNumber" class="form-label"></label>
+            <input asp-for="PhoneNumber" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Address" class="form-label"></label>
+            <input asp-for="Address" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="MedicalHistory" class="form-label"></label>
+            <textarea asp-for="MedicalHistory" class="form-control" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ArrivalType" class="form-label"></label>
+            <select asp-for="ArrivalType" class="form-select">
+                <option>Emergency</option>
+                <option>OPD</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-warning">Update</button>
+        <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+</div>

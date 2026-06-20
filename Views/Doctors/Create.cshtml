@@ -1,0 +1,39 @@
+﻿@model MediCoreHMS.Models.Doctor
+@{
+    ViewData["Title"] = "Add Doctor";
+}
+
+<h4 class="fw-bold mb-3">Add Doctor</h4>
+<div class="card shadow rounded-4 p-4" style="max-width:600px">
+    <form method="post" action="/Doctors/Create">
+        @Html.AntiForgeryToken()
+        <div class="mb-3">
+            <label class="form-label">Full Name</label>
+            <input name="FullName" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Specialization</label>
+            <input name="Specialization" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Assigned Ward</label>
+            <select name="AssignedWard" class="form-select">
+                <option value="">-- Select Ward --</option>
+                <option>General</option>
+                <option>ICU</option>
+                <option>Maternity</option>
+                <option>Pediatric</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Consultation Schedule</label>
+            <input name="ConsultationSchedule" class="form-control" placeholder="e.g. 9AM-3PM" />
+        </div>
+        <div class="mb-3 form-check">
+            <input name="IsAvailable" type="checkbox" class="form-check-input" value="true" checked />
+            <label class="form-check-label">Available</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Doctor</button>
+        <a href="/Doctors" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+</div>

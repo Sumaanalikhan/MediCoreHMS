@@ -1,0 +1,28 @@
+﻿@model MediCoreHMS.Models.Patient
+@{
+    ViewData["Title"] = "Patient Details";
+}
+
+<h4 class="fw-bold mb-3">🔍 Patient Details</h4>
+<div class="card shadow rounded-4 p-4" style="max-width:500px">
+    <dl class="row">
+        <dt class="col-sm-4">Name</dt>
+        <dd class="col-sm-8">@Model.FullName</dd>
+        <dt class="col-sm-4">Age</dt>
+        <dd class="col-sm-8">@Model.Age</dd>
+        <dt class="col-sm-4">Gender</dt>
+        <dd class="col-sm-8">@Model.Gender</dd>
+        <dt class="col-sm-4">Phone</dt>
+        <dd class="col-sm-8">@Model.PhoneNumber</dd>
+        <dt class="col-sm-4">Address</dt>
+        <dd class="col-sm-8">@Model.Address</dd>
+        <dt class="col-sm-4">Medical History</dt>
+        <dd class="col-sm-8">@Model.MedicalHistory</dd>
+        <dt class="col-sm-4">Arrival Type</dt>
+        <dd class="col-sm-8">@Model.ArrivalType</dd>
+        <dt class="col-sm-4">Registered</dt>
+        <dd class="col-sm-8">@Model.RegistrationDate.ToString("dd/MM/yyyy")</dd>
+    </dl>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+    <a asp-action="Edit" asp-route-id="@Model.PatientId" class="btn btn-warning ms-2">Edit</a>
+</div>

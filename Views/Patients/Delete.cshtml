@@ -1,0 +1,14 @@
+﻿@model MediCoreHMS.Models.Patient
+@{
+    ViewData["Title"] = "Delete Patient";
+}
+
+<h4 class="fw-bold mb-3 text-danger">Delete Patient</h4>
+<div class="card shadow rounded-4 p-4" style="max-width:500px">
+    <p>Are you sure you want to delete <strong>@Model.FullName</strong>?</p>
+    <form method="post" action="/Patients/Delete/@Model.PatientId">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <a href="/Patients" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+</div>

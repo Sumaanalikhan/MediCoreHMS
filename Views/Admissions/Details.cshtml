@@ -1,0 +1,29 @@
+﻿@model MediCoreHMS.Models.Admission
+@{
+    ViewData["Title"] = "Admission Details";
+}
+
+<h4 class="fw-bold mb-3">🔍 Admission Details</h4>
+<div class="card shadow rounded-4 p-4" style="max-width:500px">
+    <dl class="row">
+        <dt class="col-sm-5">Patient</dt>
+        <dd class="col-sm-7">@Model.Patient?.FullName</dd>
+        <dt class="col-sm-5">Doctor</dt>
+        <dd class="col-sm-7">@Model.Doctor?.FullName</dd>
+        <dt class="col-sm-5">Ward</dt>
+        <dd class="col-sm-7">@Model.Ward</dd>
+        <dt class="col-sm-5">Bed</dt>
+        <dd class="col-sm-7">@Model.Bed?.BedNumber</dd>
+        <dt class="col-sm-5">Admission Date</dt>
+        <dd class="col-sm-7">@Model.AdmissionDate.ToString("dd/MM/yyyy HH:mm")</dd>
+        <dt class="col-sm-5">Discharge Date</dt>
+        <dd class="col-sm-7">@(Model.DischargeDate.HasValue ? Model.DischargeDate.Value.ToString("dd/MM/yyyy HH:mm") : "Not discharged yet")</dd>
+        <dt class="col-sm-5">Type</dt>
+        <dd class="col-sm-7">@Model.AdmissionType</dd>
+        <dt class="col-sm-5">Status</dt>
+        <dd class="col-sm-7"><span class="badge @(Model.Status == "Admitted" ? "bg-primary" : "bg-success")">@Model.Status</span></dd>
+        <dt class="col-sm-5">Treatment Notes</dt>
+        <dd class="col-sm-7">@Model.TreatmentNotes</dd>
+    </dl>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</div>

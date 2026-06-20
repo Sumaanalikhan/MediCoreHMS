@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MediCore HMS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f0f4f8;
+        }
+
+        .sidebar {
+            min-height: 100vh;
+            background: linear-gradient(180deg, #1a237e, #283593);
+            color: white;
+            width: 240px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+        }
+
+            .sidebar a {
+                color: #cfd8dc;
+                text-decoration: none;
+                display: block;
+                padding: 12px 20px;
+                transition: 0.2s;
+            }
+
+                .sidebar a:hover, .sidebar a.active {
+                    background: rgba(255,255,255,0.15);
+                    color: white;
+                }
+
+            .sidebar .brand {
+                font-size: 1.3rem;
+                font-weight: bold;
+                color: white;
+                padding: 10px 20px 25px;
+                border-bottom: 1px solid rgba(255,255,255,0.2);
+                margin-bottom: 10px;
+            }
+
+        .main-content {
+            margin-left: 240px;
+            padding: 25px;
+        }
+
+        .topbar {
+            background: white;
+            padding: 12px 20px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="brand"><i class="fas fa-hospital-alt me-2"></i>MediCore HMS</div>
+        <a href="/"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
+        <a href="/Patients"><i class="fas fa-user-injured me-2"></i>Patients</a>
+        <a href="/Doctors"><i class="fas fa-user-md me-2"></i>Doctors</a>
+        <a href="/Beds"><i class="fas fa-bed me-2"></i>Beds</a>
+        <a href="/Admissions"><i class="fas fa-clipboard-list me-2"></i>Admissions</a>
+    </div>
+    <div class="main-content">
+        <div class="topbar d-flex justify-content-between align-items-center">
+            <span class="fw-bold text-primary">MediCore City Hospital — Karachi</span>
+            <span class="text-muted small">@DateTime.Now.ToString("dddd, dd MMMM yyyy")</span>
+        </div>
+        @RenderBody()
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

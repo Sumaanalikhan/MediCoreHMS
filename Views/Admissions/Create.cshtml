@@ -1,0 +1,64 @@
+﻿@model MediCoreHMS.Models.Admission
+@{
+    ViewData["Title"] = "New Admission";
+}
+
+<h4 class="fw-bold mb-3">New Admission</h4>
+<div class="card shadow rounded-4 p-4" style="max-width:600px">
+    <form method="post" action="/Admissions/Create">
+        @Html.AntiForgeryToken()
+        <div class="mb-3">
+            <label class="form-label">Patient</label>
+            <select name="PatientId" class="form-select">
+                <option value="">-- Select Patient --</option>
+                @foreach (var item in (SelectList)ViewData["PatientId"])
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Doctor</label>
+            <select name="DoctorId" class="form-select">
+                <option value="">-- Select Doctor --</option>
+                @foreach (var item in (SelectList)ViewData["DoctorId"])
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Bed</label>
+            <select name="BedId" class="form-select">
+                <option value="">-- Select Bed --</option>
+                @foreach (var item in (SelectList)ViewData["BedId"])
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Ward</label>
+            <select name="Ward" class="form-select">
+                <option value="">-- Select Ward --</option>
+                <option>General</option>
+                <option>ICU</option>
+                <option>Maternity</option>
+                <option>Pediatric</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Admission Type</label>
+            <select name="AdmissionType" class="form-select">
+                <option>Emergency</option>
+                <option>OPD</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Treatment Notes</label>
+            <textarea name="TreatmentNotes" class="form-control" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Admit Patient</button>
+        <a href="/Admissions" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+</div>

@@ -1,0 +1,110 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h4 class="mb-4 fw-bold text-dark">📊 Dashboard <small class="text-muted fs-6">(GCN = 4)</small></h4>
+
+<!-- Stats Cards -->
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card text-white bg-primary shadow rounded-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <div class="fs-2 fw-bold">@ViewBag.TotalPatients</div>
+                        <div>Total Patients</div>
+                    </div>
+                    <i class="fas fa-user-injured fa-2x opacity-75 mt-2"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-success shadow rounded-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <div class="fs-2 fw-bold">@ViewBag.TotalDoctors</div>
+                        <div>Total Doctors</div>
+                    </div>
+                    <i class="fas fa-user-md fa-2x opacity-75 mt-2"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-warning shadow rounded-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <div class="fs-2 fw-bold">@ViewBag.AvailableBeds / @ViewBag.TotalBeds</div>
+                        <div>Available Beds</div>
+                    </div>
+                    <i class="fas fa-bed fa-2x opacity-75 mt-2"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-danger shadow rounded-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <div class="fs-2 fw-bold">@ViewBag.EmergencyAdmissions</div>
+                        <div>Emergency Admissions</div>
+                    </div>
+                    <i class="fas fa-ambulance fa-2x opacity-75 mt-2"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- GCN 4 Widgets -->
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="card shadow rounded-4 h-100">
+            <div class="card-header bg-white fw-bold">🏥 Discharge Statistics</div>
+            <div class="card-body">
+                <p class="mb-1">✅ Discharged: <strong class="text-success">@ViewBag.TotalDischarged</strong></p>
+                <p class="mb-1">🛏️ Currently Admitted: <strong class="text-primary">@ViewBag.TotalAdmitted</strong></p>
+                <p class="mb-0">⏳ Pending Discharge: <strong class="text-warning">@ViewBag.PendingDischarges</strong></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card shadow rounded-4 h-100">
+            <div class="card-header bg-white fw-bold">📈 Monthly Patient Inflow (Last 6 Months)</div>
+            <div class="card-body">
+                <canvas id="monthlyChart" height="100"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-muted small mt-3">
+    <i class="fas fa-info-circle me-1"></i>@ViewBag.GCNNote
+</div>
+
+@section Scripts {
+    <script>
+        const ctx = document.getElementById('monthlyChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [@Html.Raw(ViewBag.MonthlyLabels ?? "")],
+                datasets: [{
+                    label: 'Patient Admissions',
+                    data: [@Html.Raw(ViewBag.MonthlyValues ?? "")],
+                    backgroundColor: 'rgba(25, 118, 210, 0.7)',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+            }
+        });
+    </script>
+}

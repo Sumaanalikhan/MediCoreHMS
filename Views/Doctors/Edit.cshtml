@@ -1,0 +1,39 @@
+﻿@model MediCoreHMS.Models.Doctor
+@{
+    ViewData["Title"] = "Edit Doctor";
+}
+
+<h4 class="fw-bold mb-3">✏️ Edit Doctor</h4>
+<div class="card shadow rounded-4 p-4" style="max-width:600px">
+    <form method="post" action="/Doctors/Edit/@Model.DoctorId">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="DoctorId" value="@Model.DoctorId" />
+        <div class="mb-3">
+            <label asp-for="FullName" class="form-label"></label>
+            <input asp-for="FullName" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Specialization" class="form-label"></label>
+            <input asp-for="Specialization" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="AssignedWard" class="form-label"></label>
+            <select asp-for="AssignedWard" class="form-select">
+                <option>General</option>
+                <option>ICU</option>
+                <option>Maternity</option>
+                <option>Pediatric</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ConsultationSchedule" class="form-label"></label>
+            <input asp-for="ConsultationSchedule" class="form-control" />
+        </div>
+        <div class="mb-3 form-check">
+            <input asp-for="IsAvailable" class="form-check-input" type="checkbox" />
+            <label asp-for="IsAvailable" class="form-check-label">Available</label>
+        </div>
+        <button type="submit" class="btn btn-warning">Update</button>
+        <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+</div>

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<MediCoreHMS.Models.Bed>
+@{
+    ViewData["Title"] = "Beds";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="fw-bold">🛏️ Beds</h4>
+    <a asp-action="Create" class="btn btn-primary"><i class="fas fa-plus me-1"></i>Add Bed</a>
+</div>
+
+<div class="card shadow rounded-4">
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead class="table-dark">
+                <tr><th>Bed Number</th><th>Ward</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+                @foreach (var b in Model)
+                {
+                    <tr>
+                        <td>@b.BedNumber</td>
+                        <td>@b.Ward</td>
+                        <td><span class="badge @(b.IsOccupied ? "bg-danger" : "bg-success")">@(b.IsOccupied ? "Occupied" : "Available")</span></td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@b.BedId" class="btn btn-sm btn-outline-warning">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@b.BedId" class="btn btn-sm btn-outline-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
